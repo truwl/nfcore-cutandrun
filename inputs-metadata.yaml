@@ -1,0 +1,429 @@
+parameter_meta:
+  cutandrun.samplesheet:
+    description: Path to comma-separated file containing information about the samples
+      in the experiment.
+    group: input_output_options
+    help: You will need to create a design file with information about the samples
+      in your experiment before running the pipeline. Use this parameter to specify
+      its location. It has to be a comma-separated file with 3 columns, and a header
+      row. See [usage docs](https://nf-co.re//usage#samplesheet-input).
+    hidden: false
+  cutandrun.outdir:
+    description: Path to the output directory where the results will be saved.
+    group: input_output_options
+    help: ''
+    hidden: false
+  cutandrun.email:
+    description: Email address for completion summary.
+    group: input_output_options
+    help: Set this parameter to your e-mail address to get a summary e-mail with details
+      of the run sent to you when the workflow exits. If set in your user config file
+      (`~/.nextflow/config`) then you don't need to specify this on the command line
+      for every run.
+    hidden: false
+  cutandrun.multiqc_title:
+    description: MultiQC report title. Printed as page header, used for filename if
+      not otherwise specified.
+    group: input_output_options
+    help: ''
+    hidden: false
+  cutandrun.save_reference:
+    description: Save reference data to output directory
+    group: input_output_options
+    help: ''
+    hidden: false
+  cutandrun.save_merged_fastq:
+    description: Save any technical replicates that were merged to output directory
+    group: input_output_options
+    help: ''
+    hidden: false
+  cutandrun.save_trimmed:
+    description: Save trimmed fastqs to output directory
+    group: input_output_options
+    help: ''
+    hidden: false
+  cutandrun.save_spikein_aligned:
+    description: Save bam files aligned to the spike-in genome to output directory
+    group: input_output_options
+    help: ''
+    hidden: false
+  cutandrun.save_unaligned:
+    description: Save unaligned sequences to output directory
+    group: input_output_options
+    help: ''
+    hidden: false
+  cutandrun.save_align_intermed:
+    description: 'Save alignment intermediates to output directory (WARNING: can be
+      very large)'
+    group: input_output_options
+    help: ''
+    hidden: false
+  cutandrun.aligner:
+    description: Select aligner
+    group: input_output_options
+    help: ''
+    hidden: true
+  cutandrun.clip_r1:
+    description: Trim galore param
+    group: trimming_options
+    help: ''
+    hidden: false
+  cutandrun.clip_r2:
+    description: Trim galore param
+    group: trimming_options
+    help: ''
+    hidden: false
+  cutandrun.three_prime_clip_r1:
+    description: Trim galore param
+    group: trimming_options
+    help: ''
+    hidden: false
+  cutandrun.three_prime_clip_r2:
+    description: Trim galore param
+    group: trimming_options
+    help: ''
+    hidden: false
+  cutandrun.trim_nextseq:
+    description: Trim galore param
+    group: trimming_options
+    help: ''
+    hidden: false
+  cutandrun.genome:
+    description: Name of iGenomes reference.
+    group: reference_data_options
+    help: "If using a reference genome configured in the pipeline using iGenomes,\
+      \ use this parameter to give the ID for the reference. This is then used to\
+      \ build the full paths for all required reference genome files e.g. `--genome\
+      \ GRCh38`. \n\nSee the [nf-core website docs](https://nf-co.re/usage/reference_genomes)\
+      \ for more details."
+    hidden: false
+  cutandrun.bowtie2:
+    description: Path to bowtie2 index
+    group: reference_data_options
+    help: ''
+    hidden: false
+  cutandrun.gtf:
+    description: Path to GTF annotation file
+    group: reference_data_options
+    help: ''
+    hidden: false
+  cutandrun.blacklist:
+    description: Path to genome blacklist
+    group: reference_data_options
+    help: ''
+    hidden: false
+  cutandrun.spikein_genome:
+    description: Name of the igenome reference for the spike-in genome
+    group: reference_data_options
+    help: ''
+    hidden: false
+  cutandrun.spikein_bowtie2:
+    description: Path to spike-in bowtie2 index
+    group: reference_data_options
+    help: ''
+    hidden: false
+  cutandrun.spikein_fasta:
+    description: Path to spike-in fasta
+    group: reference_data_options
+    help: ''
+    hidden: false
+  cutandrun.fasta:
+    description: Path to FASTA genome file.
+    group: reference_data_options
+    help: This parameter is *mandatory* if `--genome` is not specified. If you don't
+      have a BWA index available this will be generated for you automatically. Combine
+      with `--save_reference` to save BWA index for future runs.
+    hidden: false
+  cutandrun.igenomes_base:
+    description: Directory / URL base for iGenomes references.
+    group: reference_data_options
+    help: ''
+    hidden: true
+  cutandrun.igenomes_ignore:
+    description: Do not load the iGenomes reference config.
+    group: reference_data_options
+    help: Do not load `igenomes.config` when running the pipeline. You may choose
+      this option if you observe clashes between custom parameters and those supplied
+      in `igenomes.config`.
+    hidden: true
+  cutandrun.minimum_alignment_q_score:
+    description: Filter reads below a q-score threshold
+    group: pipeline_options
+    help: ''
+    hidden: false
+  cutandrun.dedup_target_reads:
+    description: Deduplicate non-control reads
+    group: pipeline_options
+    help: ''
+    hidden: false
+  cutandrun.normalisation_c:
+    description: Normalisation constant
+    group: pipeline_options
+    help: ''
+    hidden: true
+  cutandrun.igg_control:
+    description: Specifies if the samplesheet contains an IgG control
+    group: pipeline_options
+    help: ''
+    hidden: false
+  cutandrun.peak_threshold:
+    description: Threshold for peak calling when no IgG is present
+    group: pipeline_options
+    help: ''
+    hidden: false
+  cutandrun.gene_bed:
+    description: Path to gene bed file
+    group: pipeline_options
+    help: ''
+    hidden: false
+  cutandrun.replicate_threshold:
+    description: Minimum number of overlapping replicates needed for a consensus peak
+    group: pipeline_options
+    help: ''
+    hidden: false
+  cutandrun.only_genome:
+    description: Run pipeline up to reference preparation
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.only_input:
+    description: Run pipeline up to input checking
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.only_preqc:
+    description: Run pipeline up to pre-alignment
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.only_alignment:
+    description: Run pipeline up to alignment
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.only_filtering:
+    description: Run pipeline up to q-filtering
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.only_peak_calling:
+    description: Run pipeline up to peak calling
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.skip_fastqc:
+    description: Skips fastqc reporting
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.skip_trimming:
+    description: Skips trimming
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.skip_removeduplicates:
+    description: Skips de-duplication
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.skip_scale:
+    description: Skips scalefactor normalisation
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.skip_reporting:
+    description: Skips reporting
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.skip_igv:
+    description: Skips igv session generation
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.skip_heatmaps:
+    description: Skips deeptools heatmaps
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.skip_multiqc:
+    description: Skips multiqc
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.skip_upset_plots:
+    description: Skip upset plot calculation
+    group: flow_switching_options
+    help: ''
+    hidden: false
+  cutandrun.custom_config_version:
+    description: Git commit id for Institutional configs.
+    group: institutional_config_options
+    help: ''
+    hidden: true
+  cutandrun.custom_config_base:
+    description: Base directory for Institutional configs.
+    group: institutional_config_options
+    help: If you're running offline, Nextflow will not be able to fetch the institutional
+      config files from the internet. If you don't need them, then this is not a problem.
+      If you do need them, you should download the files from the repo and tell Nextflow
+      where to find them with this parameter.
+    hidden: true
+  cutandrun.config_profile_name:
+    description: Institutional config name.
+    group: institutional_config_options
+    help: ''
+    hidden: true
+  cutandrun.config_profile_description:
+    description: Institutional config description.
+    group: institutional_config_options
+    help: ''
+    hidden: true
+  cutandrun.config_profile_contact:
+    description: Institutional config contact information.
+    group: institutional_config_options
+    help: ''
+    hidden: true
+  cutandrun.config_profile_url:
+    description: Institutional config URL link.
+    group: institutional_config_options
+    help: ''
+    hidden: true
+  cutandrun.max_cpus:
+    description: Maximum number of CPUs that can be requested for any single job.
+    group: max_job_request_options
+    help: Use to set an upper-limit for the CPU requirement for each process. Should
+      be an integer e.g. `--max_cpus 1`
+    hidden: true
+  cutandrun.max_memory:
+    description: Maximum amount of memory that can be requested for any single job.
+    group: max_job_request_options
+    help: Use to set an upper-limit for the memory requirement for each process. Should
+      be a string in the format integer-unit e.g. `--max_memory '8.GB'`
+    hidden: true
+  cutandrun.max_time:
+    description: Maximum amount of time that can be requested for any single job.
+    group: max_job_request_options
+    help: Use to set an upper-limit for the time requirement for each process. Should
+      be a string in the format integer-unit e.g. `--max_time '2.h'`
+    hidden: true
+  cutandrun.help:
+    description: Display help text.
+    group: generic_options
+    help: ''
+    hidden: true
+  cutandrun.publish_dir_mode:
+    description: Method used to save pipeline results to output directory.
+    group: generic_options
+    help: The Nextflow `publishDir` option specifies which intermediate files should
+      be saved to the output directory. This option tells the pipeline what method
+      should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir)
+      for details.
+    hidden: true
+  cutandrun.email_on_fail:
+    description: Email address for completion summary, only when pipeline fails.
+    group: generic_options
+    help: An email address to send a summary email to when the pipeline is completed
+      - ONLY sent if the pipeline does not exit successfully.
+    hidden: true
+  cutandrun.plaintext_email:
+    description: Send plain-text email instead of HTML.
+    group: generic_options
+    help: ''
+    hidden: true
+  cutandrun.max_multiqc_email_size:
+    description: File size limit when attaching MultiQC reports to summary emails.
+    group: generic_options
+    help: ''
+    hidden: true
+  cutandrun.monochrome_logs:
+    description: Do not use coloured log outputs.
+    group: generic_options
+    help: ''
+    hidden: true
+  cutandrun.multiqc_config:
+    description: Custom config file to supply to MultiQC.
+    group: generic_options
+    help: ''
+    hidden: true
+  cutandrun.tracedir:
+    description: Directory to keep pipeline Nextflow logs and reports.
+    group: generic_options
+    help: ''
+    hidden: true
+  cutandrun.validate_params:
+    description: Boolean whether to validate parameters against the schema at runtime
+    group: generic_options
+    help: ''
+    hidden: true
+  cutandrun.show_hidden_params:
+    description: Show all params when using `--help`
+    group: generic_options
+    help: By default, parameters set as _hidden_ in the schema are not shown on the
+      command line when a user runs with `--help`. Specifying this option will tell
+      the pipeline to show all parameters.
+    hidden: true
+  cutandrun.enable_conda:
+    description: Run this workflow with Conda. You can also use '-profile conda' instead
+      of providing this parameter.
+    group: generic_options
+    help: ''
+    hidden: true
+  cutandrun.singularity_pull_docker_container:
+    description: Instead of directly downloading Singularity images for use with Singularity,
+      force the workflow to pull and convert Docker containers instead.
+    group: generic_options
+    help: This may be useful for example if you are unable to directly pull Singularity
+      containers to run the pipeline due to http/https proxy issues.
+    hidden: true
+parameter_group:
+  input_output_options:
+    description: Define where the pipeline should find input data and save output
+      data.
+    help: null
+    title: Input/output options
+  trimming_options:
+    description: ''
+    help: null
+    title: Trimming Options
+  reference_data_options:
+    description: Reference genome related files and options required for the workflow.
+    help: null
+    title: Reference data options
+  pipeline_options:
+    description: ''
+    help: null
+    title: Pipeline Options
+  flow_switching_options:
+    description: ''
+    help: null
+    title: Flow switching options
+  institutional_config_options:
+    description: Parameters used to describe centralised config profiles. These should
+      not be edited.
+    help: The centralised nf-core configuration profiles use a handful of pipeline
+      parameters to describe themselves. This information is then printed to the Nextflow
+      log when you run a pipeline. You should not need to change these values when
+      you run a pipeline.
+    title: Institutional config options
+  max_job_request_options:
+    description: Set the top limit for requested resources for any single job.
+    help: 'If you are running on a smaller system, a pipeline step requesting more
+      resources than are available may cause the Nextflow to stop the run with an
+      error. These options allow you to cap the maximum resources requested by any
+      single job so that the pipeline will run on your system.
+
+
+      Note that you can not _increase_ the resources requested by any job using these
+      options. For that you will need your own configuration file. See [the nf-core
+      website](https://nf-co.re/usage/configuration) for details.'
+    title: Max job request options
+  generic_options:
+    description: Less common options for the pipeline, typically set in a config file.
+    help: 'These options are common to all nf-core pipelines and allow you to customise
+      some of the core preferences for how the pipeline runs.
+
+
+      Typically these options would be set in a Nextflow config file loaded for all
+      pipeline runs, such as `~/.nextflow/config`.'
+    title: Generic options
