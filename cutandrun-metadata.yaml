@@ -1,0 +1,19 @@
+name: nf.core cutandrun
+identifier: WF_6f4afa.44
+description: Analysis pipeline for CUT&RUN and CUT&TAG experiments that includes QC,
+  support for spike-ins, IgG controls, peak calling and downstream analysis.
+softwareVersion:
+  versionName: '1.1'
+metadataStatus: Released
+workflowStatus: Released
+workflowFile: cutandrun.wdl
+repoName: nfcore-cutandrun
+gitTag: master
+inputsTemplate: inputs.json
+executable: true
+current: true
+codeRepository:
+  URL: https://github.com/truwl/nfcore-cutandrun/
+WebSite:
+- URL: https://github.com/nf-core/cutandrun
+  name: nf-core/cutandrun
